@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Results</title>
+    <link rel="stylesheet" href="{{ STATIC_URL }}upload.css">
+    <style>
+        body {
+            font-family: sans-serif;
+            background-color: #FEFAF6;
+            text-align: center;
+            color: #15824B;
+            margin: 0;
+            padding: 0;
+        }
+        h1, h2, h6 {
+            color: #15824B;
+        }
+        .file-upload {
+            background-color: #ffffff;
+            width: 90%;
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 2px solid #15824B;
+            border-radius: 8px;
+        }
+        .file-upload-btn {
+            width: 100%;
+            margin: 0;
+            color: #fff;
+            background: #15824B;
+            border: none;
+            padding: 10px;
+            border-radius: 4px;
+            border-bottom: 4px solid #14563d;
+            transition: all .2s ease;
+            outline: none;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+        .file-upload-btn:hover {
+            background: #14563d;
+            color: #ffffff;
+            transition: all .2s ease;
+            cursor: pointer;
+        }
+        .file-upload-btn:active {
+            border: 0;
+            transition: all .2s ease;
+        }
+        .file-upload-content {
+            display: none;
+            text-align: center;
+        }
+        .file-upload-input {
+            position: absolute;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            outline: none;
+            opacity: 0;
+            cursor: pointer;
+        }
+        .image-upload-wrap {
+            margin-top: 20px;
+            border: 4px dashed #15824B;
+            position: relative;
+        }
+        .image-dropping,
+        .image-upload-wrap:hover {
+            background-color: #15824B;
+            border: 4px dashed #ffffff;
+        }
+        .image-title-wrap {
+            padding: 0 15px 15px 15px;
+            color: #222;
+        }
+        .drag-text {
+            text-align: center;
+        }
+        .drag-text h3 {
+            font-weight: 100;
+            text-transform: uppercase;
+            color: #15824B;
+            padding: 60px 0;
+        }
+        .file-upload-image {
+            max-height: 200px;
+            max-width: 200px;
+            margin: auto;
+            padding: 20px;
+        }
+        .remove-image {
+            width: 200px;
+            margin: 0;
+            color: #fff;
+            background: #cd4535;
+            border: none;
+            padding: 10px;
+            border-radius: 4px;
+            border-bottom: 4px solid #b02818;
+            transition: all .2s ease;
+            outline: none;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+        .remove-image:hover {
+            background: #c13b2a;
+            color: #ffffff;
+            transition: all .2s ease;
+            cursor: pointer;
+        }
+        .remove-image:active {
+            border: 0;
+            transition: all .2s ease;
+        }
+        .result-images {
+            text-align: center;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .image-row {
+            display: flex;
+            justify-content: center;
+            align-items:start;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .image-container {
+            flex: 1 1 45%;
+            max-width: 45%;
+            
+        }
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            max-height: 500px;
+        }
+        .image-container h2 {
+            margin-bottom: 10px;
+        }
+        .return-btn {
+            background-color: white;
+            color: #102C57;
+            border: 2px solid #DAC0A3;
+            font-size: x-large;
+            padding: 10px;
+            transition-duration: 0.4s;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+        .return-btn:hover {
+            background-color: #DAC0A3;
+            color: white;
+        }
+        @media (max-width: 768px) {
+            .file-upload {
+                width: 100%;
+                padding: 10px;
+            }
+            .image-container {
+                flex: 1 1 100%;
+                max-width: 100%;
+            }
+            .return-btn {
+                width: 100%;
+                padding: 15px;
+                font-size: large;
+            }
+        }
+        .image-row h2 {
+            width: 100%;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="color: #102C57;">Processed Image</h1>
+    <div class="result-images">
+        <div class="image-row">
+            <div class="image-container">
+                <h2 style="color: #102C57;">Annotated Image:</h2>
+                <img src="{{ annotated_image_url }}" alt="Annotated Image">
+            </div>
+            <div class="image-container" >
+                <h2 style="color: #102C57; " >Cropped Image:</h2>
+                <img style="max-height: 100px !important;" src="{{ cropped_images_urls }}" alt="Cropped Image">
+            </div>
+        </div>
+        <div>
+            <h2 style="color: #102C57;">Plate Value: <span dir="rtl" lang="ar">{{ plateresult }}</span></h2>
+            <h6 style="color: #102C57;">Confidence: <span>{{ confidence }}</span></h6>
+        </div>
+        <input class="return-btn" type="button" value="Upload Another Image" onClick="history.back();">
+    </div>
+</body>
+</html>
